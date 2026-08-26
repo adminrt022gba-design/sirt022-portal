@@ -1,97 +1,536 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SIRT 022 — Portal Warga</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Warga SIRT 022</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f7fb;
+      color: #17324d;
+    }
+
+    header {
+      background: linear-gradient(135deg, #07538f, #087f70);
+      color: white;
+      padding: 25px 15px;
+    }
+
+    .header {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      background: white;
+      border-radius: 15px;
+      padding: 5px;
+    }
+
+    h1 { margin: 0; font-size: 30px; }
+    h2 { margin-top: 0; }
+    p { line-height: 1.6; }
+
+    nav {
+      background: #064f88;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    nav button {
+      border: 0;
+      padding: 10px 15px;
+      border-radius: 20px;
+      background: transparent;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    nav button:hover {
+      background: #159b70;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 25px auto;
+      padding: 0 15px;
+    }
+
+    .card {
+      background: white;
+      padding: 22px;
+      border-radius: 15px;
+      margin-bottom: 18px;
+      box-shadow: 0 4px 15px rgba(0,0,0,.08);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 15px;
+    }
+
+    .service {
+      background: #f2f7fb;
+      padding: 15px;
+      border-radius: 12px;
+    }
+
+    .service b {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .muted {
+      color: #718096;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      margin: 6px 0;
+      border: 1px solid #ccd7e2;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    .btn {
+      border: 0;
+      background: #07538f;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 9px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      background: #087f70;
+    }
+
+    .danger {
+      background: #c0392b;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .notice {
+      padding: 12px;
+      border-left: 4px solid #087f70;
+      background: #f6fafb;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    .qris {
+      display: block;
+      max-width: 300px;
+      width: 100%;
+      margin: 15px auto;
+      border-radius: 10px;
+    }
+
+    footer {
+      background: #064f88;
+      color: white;
+      text-align: center;
+      padding: 25px;
+      margin-top: 40px;
+    }
+
+    #loginBox {
+      max-width: 500px;
+      margin: 20px auto;
+    }
+
+    @media(max-width:600px) {
+      .header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .logo {
+        width: 100px;
+        height: 100px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header class="hero">
-  <div class="brand">
-    <img src="logo.png" alt="SIRT 022">
+
+<header>
+  <div class="header">
+    <img src="logo.png" class="logo" alt="Logo SIRT 022">
+
     <div>
       <h1>PORTAL WARGA</h1>
       <h2>RT 022 BLOK G-H</h2>
       <p>Griya Budiman Asri</p>
-      <span>Bersama Membangun Lingkungan Aman, Nyaman dan Harmonis</span>
+      <small>
+        Bersama membangun lingkungan aman, nyaman dan harmonis
+      </small>
     </div>
   </div>
 </header>
 
 <nav>
-  <a href="#beranda">🏠 Beranda</a>
-  <a href="#pengumuman">📢 Pengumuman</a>
-  <a href="#kegiatan">📅 Kegiatan</a>
-  <a href="#layanan">🧾 Layanan</a>
-  <a href="#kas">💳 Kas & Iuran</a>
-  <a href="#warga">👥 Data Warga</a>
- <button onclick="showLogin()">🔐 Login Admin</button>
+  <button onclick="showSection('beranda')">🏠 Beranda</button>
+  <button onclick="showSection('pengumuman')">📢 Pengumuman</button>
+  <button onclick="showSection('kegiatan')">📅 Kegiatan</button>
+  <button onclick="showSection('layanan')">🧾 Layanan</button>
+  <button onclick="showSection('qris')">💳 QRIS</button>
+  <button onclick="showLogin()">🔐 Login Admin</button>
 </nav>
 
-<main id="beranda">
-<section class="welcome">
+<main>
+
+<section id="beranda">
   <div class="card">
-    <h2>Selamat Datang di Portal Warga RT 022 Blok G-H</h2>
-    <p>Informasi, layanan dan data warga dalam satu portal. Mari bersama menjaga kekompakan dan kebersamaan.</p>
+    <h2>Selamat Datang di Portal Warga RT 022</h2>
+    <p>
+      Portal informasi dan layanan digital warga RT 022
+      Blok G-H Griya Budiman Asri.
+    </p>
   </div>
-  <div class="card stats">
-    <h3>Informasi Cepat</h3>
-    <div class="statgrid">
-      <div><b id="kkCount">—</b><small>KK</small></div>
-      <div><b id="wargaCount">—</b><small>Warga</small></div>
-      <div><b>RT 022</b><small>Blok G-H</small></div>
-      <div><b>Kom­pak</b><small>& Guyub</small></div>
+
+  <div class="grid">
+    <div class="card">
+      <h3>👥 Data Warga</h3>
+      <p id="jumlahWarga">—</p>
+    </div>
+
+    <div class="card">
+      <h3>📢 Pengumuman</h3>
+      <p>Informasi terbaru warga RT.</p>
+    </div>
+
+    <div class="card">
+      <h3>📅 Kegiatan</h3>
+      <p>Agenda kegiatan warga.</p>
     </div>
   </div>
 </section>
 
-<section class="grid3">
-  <div class="card" id="pengumuman"><h3>📢 Pengumuman Terbaru</h3><div id="announcements"><p class="muted">Memuat...</p></div></div>
-  <div class="card" id="kegiatan"><h3>📅 Kegiatan Terdekat</h3><div id="activities"><p class="muted">Memuat...</p></div></div>
-  <div class="card" id="layanan"><h3>🧾 Layanan Warga</h3>
-    <div class="service">📄 <b>Surat Pengantar</b><small>Buat permintaan surat secara online</small></div>
-    <div class="service">⚠️ <b>Laporan Warga</b><small>Sampaikan keluhan atau laporan</small></div>
-    <div class="service">📞 <b>Kontak Pengurus</b><small>Hubungi pengurus RT</small></div>
+
+<section id="pengumuman" class="hidden">
+  <div class="card">
+    <h2>📢 Pengumuman</h2>
+    <div id="daftarPengumuman">
+      <p class="muted">Belum ada pengumuman.</p>
+    </div>
   </div>
 </section>
 
-<section class="card" id="kas">
-  <h2>💳 Kas & Iuran</h2>
-  <div class="qriswrap">
-    <div><h3>Dukung kegiatan RT</h3><p>Scan QRIS untuk pembayaran iuran atau dukungan kegiatan warga.</p></div>
-    <img src="qris.png" alt="QRIS RT 022">
+
+<section id="kegiatan" class="hidden">
+  <div class="card">
+    <h2>📅 Kegiatan Warga</h2>
+    <div id="daftarKegiatan">
+      <p class="muted">Belum ada kegiatan.</p>
+    </div>
   </div>
 </section>
 
-<section class="card" id="warga">
-  <h2>👥 Data Warga</h2>
-  <p>Data warga ditampilkan setelah login sesuai hak akses. Data sensitif tidak ditampilkan untuk umum.</p>
+
+<section id="layanan" class="hidden">
+  <div class="card">
+    <h2>🧾 Layanan Warga</h2>
+
+    <div class="grid">
+      <div class="service">
+        <b>📄 Surat Pengantar</b>
+        <span>Permintaan surat melalui pengurus RT.</span>
+      </div>
+
+      <div class="service">
+        <b>⚠️ Laporan Warga</b>
+        <span>Sampaikan laporan atau keluhan lingkungan.</span>
+      </div>
+
+      <div class="service">
+        <b>📞 Kontak Pengurus</b>
+        <span>Hubungi pengurus RT 022.</span>
+      </div>
+    </div>
+  </div>
 </section>
+
+
+<section id="qris" class="hidden">
+  <div class="card">
+    <h2>💳 QRIS RT 022</h2>
+    <p>Gunakan QRIS sesuai arahan pengurus RT.</p>
+    <img src="qris.png" class="qris" alt="QRIS RT 022">
+  </div>
+</section>
+
+
+<!-- LOGIN ADMIN -->
+
+<section id="loginBox" class="hidden">
+
+  <div class="card">
+
+    <h2>🔐 Login Admin</h2>
+
+    <p class="muted">
+      Khusus pengurus/admin RT.
+    </p>
+
+    <input
+      id="email"
+      type="email"
+      placeholder="Email Admin"
+    >
+
+    <input
+      id="password"
+      type="password"
+      placeholder="Password"
+    >
+
+    <button class="btn" onclick="login()">
+      Masuk
+    </button>
+
+    <button
+      class="btn"
+      onclick="showSection('beranda')"
+      style="margin-left:5px"
+    >
+      Kembali
+    </button>
+
+    <p id="loginMsg"></p>
+
+  </div>
+
+</section>
+
+
+<!-- PANEL ADMIN -->
+
+<section id="adminBox" class="hidden">
+
+  <div class="card">
+
+    <h2>🔐 Panel Admin SIRT 022</h2>
+
+    <p id="who" class="muted"></p>
+
+    <button class="btn danger" onclick="logout()">
+      Keluar
+    </button>
+
+  </div>
+
+
+  <div class="card">
+
+    <h2>👥 Data Warga</h2>
+
+    <p class="muted">
+      Data ini hanya untuk admin.
+    </p>
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th>Blok</th>
+            <th>No Rumah</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody id="wargaRows">
+          <tr>
+            <td colspan="4">
+              Belum ada data.
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h2>📢 Tambah Pengumuman</h2>
+
+    <input
+      id="judul"
+      placeholder="Judul pengumuman"
+    >
+
+    <textarea
+      id="isi"
+      placeholder="Isi pengumuman"
+      rows="4"
+    ></textarea>
+
+    <input
+      id="tgl"
+      type="date"
+    >
+
+    <button
+      class="btn"
+      onclick="addAnnouncement()"
+    >
+      Simpan Pengumuman
+    </button>
+
+  </div>
+
+
+  <div class="card">
+
+    <h2>📅 Tambah Kegiatan</h2>
+
+    <input
+      id="namaKeg"
+      placeholder="Nama kegiatan"
+    >
+
+    <input
+      id="tglKeg"
+      type="date"
+    >
+
+    <input
+      id="lokasi"
+      placeholder="Lokasi"
+    >
+
+    <textarea
+      id="ketKeg"
+      placeholder="Keterangan"
+      rows="3"
+    ></textarea>
+
+    <button
+      class="btn"
+      onclick="addActivity()"
+    >
+      Simpan Kegiatan
+    </button>
+
+  </div>
+
+</section>
+
 </main>
-<div id="loginBox" class="card hidden">
-  <h2>🔐 Login Admin</h2>
 
-  <input id="email" type="email" placeholder="Email Admin">
 
-  <input id="password" type="password" placeholder="Password">
+<footer>
+  SIRT 022 Blok G-H · Griya Budiman Asri
+</footer>
 
-  <button class="btn" onclick="login()">Masuk</button>
 
-  <p id="loginMsg"></p>
-</div>
-<footer>SIRT 022 Blok G-H · Griya Budiman Asri</footer>
-<script src="config.js"></script>
+<!-- SUPABASE -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- KONFIGURASI SUPABASE -->
+
+<script src="config.js"></script>
+
+<!-- PROGRAM PORTAL -->
+
 <script src="app.js"></script>
+
+
 <script>
-function showLogin() {
-  const box = document.getElementById("loginBox");
-  if (box) {
-    box.classList.remove("hidden");
-    box.scrollIntoView({ behavior: "smooth" });
+
+function showSection(id) {
+
+  document
+    .querySelectorAll("main > section")
+    .forEach(section => {
+      section.classList.add("hidden");
+    });
+
+  const section =
+    document.getElementById(id);
+
+  if (section) {
+    section.classList.remove("hidden");
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   }
 }
+
+
+function showLogin() {
+
+  document
+    .querySelectorAll("main > section")
+    .forEach(section => {
+      section.classList.add("hidden");
+    });
+
+  const box =
+    document.getElementById("loginBox");
+
+  if (box) {
+    box.classList.remove("hidden");
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+}
+
 </script>
+
 </body>
 </html>
