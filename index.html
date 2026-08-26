@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SIRT 022 — Portal Warga</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero">
+  <div class="brand">
+    <img src="logo.png" alt="SIRT 022">
+    <div>
+      <h1>PORTAL WARGA</h1>
+      <h2>RT 022 BLOK G-H</h2>
+      <p>Griya Budiman Asri</p>
+      <span>Bersama Membangun Lingkungan Aman, Nyaman dan Harmonis</span>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <a href="#beranda">🏠 Beranda</a>
+  <a href="#pengumuman">📢 Pengumuman</a>
+  <a href="#kegiatan">📅 Kegiatan</a>
+  <a href="#layanan">🧾 Layanan</a>
+  <a href="#kas">💳 Kas & Iuran</a>
+  <a href="#warga">👥 Data Warga</a>
+  <button id="loginBtn">🔐 Login Admin</button>
+</nav>
+
+<main id="beranda">
+<section class="welcome">
+  <div class="card">
+    <h2>Selamat Datang di Portal Warga RT 022 Blok G-H</h2>
+    <p>Informasi, layanan dan data warga dalam satu portal. Mari bersama menjaga kekompakan dan kebersamaan.</p>
+  </div>
+  <div class="card stats">
+    <h3>Informasi Cepat</h3>
+    <div class="statgrid">
+      <div><b id="kkCount">—</b><small>KK</small></div>
+      <div><b id="wargaCount">—</b><small>Warga</small></div>
+      <div><b>RT 022</b><small>Blok G-H</small></div>
+      <div><b>Kom­pak</b><small>& Guyub</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="grid3">
+  <div class="card" id="pengumuman"><h3>📢 Pengumuman Terbaru</h3><div id="announcements"><p class="muted">Memuat...</p></div></div>
+  <div class="card" id="kegiatan"><h3>📅 Kegiatan Terdekat</h3><div id="activities"><p class="muted">Memuat...</p></div></div>
+  <div class="card" id="layanan"><h3>🧾 Layanan Warga</h3>
+    <div class="service">📄 <b>Surat Pengantar</b><small>Buat permintaan surat secara online</small></div>
+    <div class="service">⚠️ <b>Laporan Warga</b><small>Sampaikan keluhan atau laporan</small></div>
+    <div class="service">📞 <b>Kontak Pengurus</b><small>Hubungi pengurus RT</small></div>
+  </div>
+</section>
+
+<section class="card" id="kas">
+  <h2>💳 Kas & Iuran</h2>
+  <div class="qriswrap">
+    <div><h3>Dukung kegiatan RT</h3><p>Scan QRIS untuk pembayaran iuran atau dukungan kegiatan warga.</p></div>
+    <img src="qris.png" alt="QRIS RT 022">
+  </div>
+</section>
+
+<section class="card" id="warga">
+  <h2>👥 Data Warga</h2>
+  <p>Data warga ditampilkan setelah login sesuai hak akses. Data sensitif tidak ditampilkan untuk umum.</p>
+</section>
+</main>
+
+<footer>SIRT 022 Blok G-H · Griya Budiman Asri</footer>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
