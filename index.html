@@ -26,7 +26,7 @@
   <a href="#layanan">🧾 Layanan</a>
   <a href="#kas">💳 Kas & Iuran</a>
   <a href="#warga">👥 Data Warga</a>
-  <button id="loginBtn">🔐 Login Admin</button>
+ <button onclick="showLogin()">🔐 Login Admin</button>
 </nav>
 
 <main id="beranda">
@@ -69,9 +69,27 @@
   <p>Data warga ditampilkan setelah login sesuai hak akses. Data sensitif tidak ditampilkan untuk umum.</p>
 </section>
 </main>
+<div id="loginBox" class="card hidden">
+  <h2>🔐 Login Admin</h2>
 
+  <input id="email" type="email" placeholder="Email Admin">
+
+  <input id="password" type="password" placeholder="Password">
+
+  <button class="btn" onclick="login()">Masuk</button>
+
+  <p id="loginMsg"></p>
+</div>
 <footer>SIRT 022 Blok G-H · Griya Budiman Asri</footer>
 <script src="config.js"></script>
 <script src="app.js"></script>
-</body>
+<script>
+function showLogin() {
+  const box = document.getElementById("loginBox");
+  if (box) {
+    box.classList.remove("hidden");
+    box.scrollIntoView({ behavior: "smooth" });
+  }
+}
+</script></body>
 </html>
